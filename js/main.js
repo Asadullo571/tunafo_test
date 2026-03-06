@@ -176,10 +176,19 @@ document.getElementById('sendViaEmail').addEventListener('click', () => {
     "Izoh: " + message + "\n\n" +
     "- Tunkafo Potolok sayti orqali yuborildi"
   );
-  window.open(
-    "https://mail.google.com/mail/?view=cm&fs=1&to=tunkafo771@gmail.com&su=" + subject + "&body=" + body,
-    '_blank'
-  );
+
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // Telefonda o'z email ilovasini ochadi
+    window.location.href = "mailto:tunkafo771@gmail.com?subject=" + subject + "&body=" + body;
+  } else {
+    // Kompyuterda Gmail.com ochadi
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=tunkafo771@gmail.com&su=" + subject + "&body=" + body,
+      '_blank'
+    );
+  }
   closeModalSuccess();
 });
 
